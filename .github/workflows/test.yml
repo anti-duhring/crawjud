@@ -11,6 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-go@v5.0.0
-      - name: Run Go tests
-        run: go test ./...
-          
+        with:
+          go-version-file: ./go.mod
+      - name: Install dependencies
+        run: go get .
+      - name: Build
+        run: go build -v ./...
+      - name: Test with the Go CLI
+        run: go test
+            
