@@ -11,8 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-go@v5.0.0
-        with:
-          go-version-file: ../go.mod
       - name: Install dependencies
         run: go get .
       - name: Build
