@@ -1,0 +1,16 @@
+name: Test
+
+on: 
+  pull_request:
+    branches:    
+      - main
+    types: [opened, reopened, synchronize]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-go@v5.0.0
+      - name: Run Go tests
+        run: go test ./...
+          
