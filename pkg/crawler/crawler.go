@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"regexp"
 
+	"github.com/anti-duhring/crawjud/pkg/utils"
 	"github.com/anti-duhring/pdf"
 )
 
@@ -106,10 +107,8 @@ func ExtractBytes(file io.ReadCloser) ([]byte, error) {
 }
 
 func ParseProcesses(content []byte) (map[string]string, error) {
-	processNumberPattern := `\d{7}\-\d{2}\.\d{4}\.\d{1,2}\.\d{1,4}`
-	processNumberWithContextPattern := `\d{7}\-\d{2}\.\d{4}\.\d{1,2}\.\d{1,4}.{0,500}`
 
-	re, err := regexp.Compile(processNumberWithContextPattern)
+	re, err := regexp.Compile(utils.ProcessNumberWithContextPattern)
 
 	if err != nil {
 		return nil, err
@@ -119,7 +118,7 @@ func ParseProcesses(content []byte) (map[string]string, error) {
 	processes := make(map[string]string)
 
 	for _, match := range matches {
-		re := regexp.MustCompile(processNumberPattern)
+		re := regexp.MustCompile(utils.ProcessNumberPattern)
 		processId := re.Find(match)
 		key := string(processId)
 
