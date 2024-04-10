@@ -3,7 +3,7 @@ package crawler_test
 import (
 	"testing"
 
-	"github.com/anti-duhring/crawjud/internal/crawler"
+	"github.com/anti-duhring/crawjud/pkg/crawler"
 )
 
 func TestTJPE(t *testing.T) {
